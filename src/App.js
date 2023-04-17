@@ -1,72 +1,50 @@
-import React, {useState} from 'react';
-import './magic8.css';
+import React, { useState } from 'react';
+import './App.css';
+import './paris style.css'
+
+const answers = [
+  "It is certain",
+  "Without a doubt",
+  "You may rely on it",
+  "Yes definitely",
+  "It is decidedly so",
+  "As I see it, yes",
+  "Most likely",
+  "Yes",
+  "Outlook good",
+  "Signs point to yes",
+  "Reply hazy try again",
+  "Better not tell you now",
+  "Ask again later",
+  "Cannot predict now",
+  "Concentrate and ask again",
+  "Don't count on it",
+  "Outlook not so good",
+  "My sources say no",
+  "Very doubtful",
+  "My reply is no"
+];
 
 function App() {
+  const [answer, setAnswer] = useState("Shake the ball!");
 
-const [userInput, setUserInput] = useState('');
-const [randomIndex, setRandomIndex] = useState('');
-const [error, setError] = useState('');
+  const shakeBall = () => {
+    const randomIndex = Math.floor(Math.random() * answers.length);
+    setAnswer(answers[randomIndex]);
+  };
 
-const handleChange = (event) => {
-  event.preventDefault();
-  console.log(event.target.value);
-  setUserInput(event.target.value);
-}
-//psuedo code for checking users question mark
-//check value of user input
-//check if user input string contains question mark
-//proceed as normal
-//if the user input does not contain a question mark 
-//show error
-const handleClick = () => {
-
-  if(userInput)
-  {
-    setError('')
-  setRandomIndex(Math.round(Math.random() * 20));
-  setUserInput('');
-  }
-  else{
-    setError('Please Enter a good question!')
-  }
-  console.log(randomIndex);
-}
-
-const possibleAnswers = [
-  'It is certain',
-  'It is decidedly so',
-  'Without a doubt',
-  'Yes, definitely',
-  'You may rely on it',
-  'As I see it, yes',
-  'Outlook good',
-  'Yes',
-  'Signs point to yes',
-  'Reply hazy try again',
-  'Ask again later',
-  'Better not tell you now',
-  'Cannot predict now',
-  'Concentrate and ask again',
-  'Don\'t count on it',
-  'My reply is no',
-  'My sources say no',
-  'Most likely',
-  'Outlook not so good',
-  'Very doubtful'
-];
-const answer = possibleAnswers[randomIndex];
   return (
     <div className="App">
-      <h1>Welcome to ask Magic 8-ball</h1>
-      <p className="info">Ask a question and tap me for an answer...</p>
-      <input type="text" className="question" value={userInput} onChange={handleChange} />
-      <div className="eight-ball">
-        <div className="content" onClick={handleClick}>
-        {error ? <p className="error">{error}</p> :
-          answer ? <p className="answer">{answer}</p> : <p className="eight">8</p>}
-          
+      <h1>Magic 8 Ball</h1>
+     
+      <button onClick={shakeBall}>
+      {answer && (
+        <div className="answer">
+         {answer}
         </div>
-      </div>
+      )}
+        </button>
+
     </div>
   );
 }
