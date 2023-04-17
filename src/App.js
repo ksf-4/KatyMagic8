@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import './paris style.css'
 
 const answers = [
   "It is certain",
@@ -25,7 +26,7 @@ const answers = [
 ];
 
 function App() {
-  const [answer, setAnswer] = useState("");
+  const [answer, setAnswer] = useState("Shake the ball!");
 
   const shakeBall = () => {
     const randomIndex = Math.floor(Math.random() * answers.length);
@@ -35,12 +36,15 @@ function App() {
   return (
     <div className="App">
       <h1>Magic 8 Ball</h1>
-      <button onClick={shakeBall}>Shake the ball!</button>
+     
+      <button onClick={shakeBall}>
       {answer && (
         <div className="answer">
-          <p>{answer}</p>
+         {answer}
         </div>
       )}
+        </button>
+
     </div>
   );
 }
